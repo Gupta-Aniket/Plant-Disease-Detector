@@ -3,13 +3,24 @@ import 'dart:core';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CardList extends StatelessWidget {
+  launchURL(BuildContext context, String url) async {
+    try {
+      launchUrl(Uri.parse(url));
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  String redirectTo;
   double confidentiality;
   String nameOfDisease = "";
   CardList({
     required this.nameOfDisease,
     required this.confidentiality,
+    required this.redirectTo,
   });
 
   @override
@@ -17,12 +28,15 @@ class CardList extends StatelessWidget {
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Container(
-          decoration: BoxDecoration(
-            color: Color(0xff7a8d84),
-            borderRadius: BorderRadius.circular(10),
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Color(0xff7a8d84),
+            shape: ContinuousRectangleBorder(
+                borderRadius: BorderRadius.circular(15)),
           ),
-          width: double.infinity,
+          onPressed: () {
+            launchURL(context, redirectTo);
+          },
           child: Padding(
             padding: const EdgeInsets.all(12.0),
             child: Row(

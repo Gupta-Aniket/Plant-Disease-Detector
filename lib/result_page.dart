@@ -8,6 +8,7 @@ class ResultPage extends StatelessWidget {
   String pickedImage;
   List<dynamic> result;
   ResultPage({required this.pickedImage, required this.result});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -44,6 +45,8 @@ class ResultPage extends StatelessWidget {
                     return CardList(
                       nameOfDisease: item['label'] ?? '',
                       confidentiality: item['score'] ?? '',
+                      redirectTo:
+                          ('https://www.google.com/search?q=How+do+you+treat+${item['label']}+leaf'),
                     );
                   }).toList(),
                 ),

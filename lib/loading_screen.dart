@@ -6,10 +6,13 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import 'package:smart_farming/result_page.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 const API_URL =
     "https://api-inference.huggingface.co/models/Diginsa/Plant-Disease-Detection-Project";
-const headers = {"Authorization": "*"};
+const headers = {
+  "Authorization": "Bearer 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"
+};
 
 class LoadingPage extends StatelessWidget {
   String filename;

@@ -12,7 +12,9 @@ import 'package:smart_farming/result_page.dart';
 
 const API_URL =
     "https://api-inference.huggingface.co/models/Diginsa/Plant-Disease-Detection-Project";
-const headers = {"Authorization": "*"};
+const headers = {
+  "Authorization": "Bearer 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"
+};
 
 class FrontPage extends StatelessWidget {
   FrontPage({Key? key}) : super(key: key);
