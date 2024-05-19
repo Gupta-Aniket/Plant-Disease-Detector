@@ -7,6 +7,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:smart_farming/loading_screen.dart';
 import 'package:smart_farming/result_page.dart';
 
@@ -25,11 +26,13 @@ class FrontPage extends StatelessWidget {
     final XFile? image;
     if (choice == true)
       image = await _picker.pickImage(source: ImageSource.gallery);
-    else
+    else {
       image = await _picker.pickImage(source: ImageSource.camera);
+      // XFile? img = image.scaleD
+      // TODO: Resize images got from camera, as they are too good and we dont need that kind of image data, the app will work on less good images as well
+    }
     if (image == null) return;
     String path = (image.path);
-    // final result = await query(image.path);
 
     Navigator.push(
       context,

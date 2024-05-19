@@ -1,14 +1,21 @@
 import 'dart:core';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:smart_farming/internal_web.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class CardList extends StatelessWidget {
   launchURL(BuildContext context, String url) async {
     try {
-      launchUrl(Uri.parse(url));
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => InternalWeb(
+            redirectTo: url,
+          ),
+        ),
+      );
     } catch (e) {
       print(e);
     }
@@ -38,13 +45,12 @@ class CardList extends StatelessWidget {
             launchURL(context, redirectTo);
           },
           child: Padding(
-            padding: const EdgeInsets.all(12.0),
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
             child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Expanded(
-                    flex: 4,
+                  Flexible(
                     child: Text(
                       nameOfDisease,
                       style: const TextStyle(
@@ -55,14 +61,11 @@ class CardList extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 8),
-                  Expanded(
-                    flex: 1,
-                    child: Text(
-                      (confidentiality * 100).toInt().toString() + " % ",
-                      style: const TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
-                      ),
+                  Text(
+                    (confidentiality * 100).toInt().toString() + " % ",
+                    style: const TextStyle(
+                      fontSize: 20,
+                      color: Colors.white,
                     ),
                   ),
                 ]),
